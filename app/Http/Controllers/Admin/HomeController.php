@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        dd('Benvenuto nel pannello di amministrazione');
+        return view('admin.home');
     }
 }

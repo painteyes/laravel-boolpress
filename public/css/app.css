@@ -10962,3 +10962,35 @@ a.text-dark:focus {
   }
 }
 
+img {
+  max-width: 100%;
+}
+
+.posts h1 {
+  margin-bottom: 30px;
+}
+
+.posts a {
+  text-decoration: none;
+}
+
+.posts a .card-title {
+  color: black;
+}
+
+.posts a .card-text {
+  color: gray;
+}
+
+.posts a .card-link {
+  color: lightseagreen;
+}
+
+.posts a .card-link:hover {
+  text-decoration: underline;
+}
+
+.posts .poster {
+  margin-bottom: 20px;
+}
+

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 // ----------------------------
 use App\Post;
 use Illuminate\Support\Str;
+use App\Category;
 // ----------------------------
 
 
@@ -31,7 +32,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -71,8 +73,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all();
         $post = Post::findOrFail($id);
-        return view('admin.posts.edit', compact('post'));
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -111,19 +114,7 @@ class PostController extends Controller
         return [
             'title' => 'required|max:250',
             'content' => 'required|min:20|max:5000',
+            'category_id' => 'exist:categories,id|nullable'
         ];
-    }
-
-    protected function getUniqueSlug($title) {        
-        $slug = Str::slug($title);
-        $unchanged_slug = $slug;
-        $post_found = Post::where('slug', '=', $slug)->first();        
-        $counter = 0;         
-        while($post_found) {
-            $counter++;
-            $slug = $unchanged_slug . '-' . $counter;
-            $post_found = Post::where('slug', '=', $slug)->first();
-        }
-        return $slug;   
     }
 }

@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index(){
-
         $user = Auth::user();
-        return view('admin.home', compact('user'));
+        
+        $user_info = $user->UserInfo;
 
+        return view('admin.home', compact('user', 'user_info'));
     }
 }

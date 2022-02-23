@@ -4,7 +4,12 @@
     <section>
         <div class="card">        
             <div class="card-body">
-                <div>{{$post->slug}}</div>    
+                <div>{{$post->slug}}</div>   
+
+               
+                    <div>Category: {{$post->category ? $post->category->name : 'undefined'}}</div> 
+                             
+                
                 <div class="">
                     <img src="https://th.bing.com/th/id/R.f258539b928797dfe621298b92c7ceb2?rik=zl88qJzgJ6cpPQ&pid=ImgRaw&r=0" alt="">
                 </div>    

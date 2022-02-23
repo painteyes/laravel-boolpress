@@ -15,13 +15,33 @@
                 </div>
             @endif
 
+            
+
             <form action="{{ route('admin.posts.store') }}" method="post">
                 @csrf
                 @method('POST')
+
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" class="form-control" id="text" name="title" value="{{old('title')}}">
                 </div>
+
+
+                <div class="form-group">
+                    <label for="category_id">Category</label>
+                    <select id="category_id" name='category_id'>
+
+                        <option value="">Nessuna</option>
+
+                        @foreach ($categories as $category)
+                            <option value="{{$category->id}}" {{old('category_id') == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                        @endforeach
+                        
+                    </select>
+                </div>
+
+
+
                 <div class="form-group">
                     <label for="content">Content</label>
                     <textarea class="form-control" id="content" rows="10"id="content" name="content" value="">{{old('content')}}</textarea>

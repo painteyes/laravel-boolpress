@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 // ----------------------------
 use App\Post;
+use Illuminate\Support\Str;
 // ----------------------------
 
 
@@ -30,7 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -41,7 +42,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->getValidationRules());
+        $form_data = $request->all();      
+        $new_post = new Post();
+        $new_post->fill($form_data);
+        $new_post->slug = $this->getUniqueSlug($form_data['title']);
+        $new_post->save();
+        return redirect()->route('admin.posts.show', ['post' => $new_post->id ]);
     }
 
     /**
@@ -52,7 +59,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -63,7 +71,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -75,7 +84,14 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $form_data = $request->all();
+        $request->validate($this->getValidationRules()); 
+        $post = Post::findOrFail($id);        
+        if($form_data['title'] != $post->title) {
+            $form_data['slug'] = $this->getUniqueSlug($form_data['title']);
+        }
+        $post->update($form_data);
+        return redirect()->route('admin.posts.show', ['post'=>$post->id]);
     }
 
     /**
@@ -86,6 +102,28 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        return redirect()->route('admin.posts.index');
+    }
+
+    protected function getValidationRules() {
+        return [
+            'title' => 'required|max:250',
+            'content' => 'required|min:20|max:5000',
+        ];
+    }
+
+    protected function getUniqueSlug($title) {        
+        $slug = Str::slug($title);
+        $unchanged_slug = $slug;
+        $post_found = Post::where('slug', '=', $slug)->first();        
+        $counter = 0;         
+        while($post_found) {
+            $counter++;
+            $slug = $unchanged_slug . '-' . $counter;
+            $post_found = Post::where('slug', '=', $slug)->first();
+        }
+        return $slug;   
     }
 }

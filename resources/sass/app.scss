@@ -21,6 +21,10 @@ img{
 
     a{
         text-decoration: none;
+
+        .card{
+            margin-bottom: 30px;
+        }
         
         .card-title{
             color: black;
@@ -28,12 +32,13 @@ img{
 
         .card-text{
             color: gray;
-        }
 
-        .card-link{
-            color: lightseagreen;
-            &:hover{
-                text-decoration: underline;
+            span{
+                color: black;
+                &:hover{
+                    text-decoration: underline;
+                    color: rgb(51, 154, 251);
+                }
             }
         }
     }

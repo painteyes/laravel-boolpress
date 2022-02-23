@@ -8,14 +8,20 @@
 
                 @foreach ($posts as $post)                 
                     <div class="col">
+
                         <a href ="{{ route('admin.posts.show', ['post' => $post->id]) }}">
+
                             <div class="card">
-                                <div class="card-body">                
+
+                                <div class="card-body">
+
                                     <div class="poster">
                                         <img src="https://th.bing.com/th/id/R.f258539b928797dfe621298b92c7ceb2?rik=zl88qJzgJ6cpPQ&pid=ImgRaw&r=0" alt="">
                                     </div>
-                                    <div class="text-area">  
-                                        <h5 class="card-title">{{ rtrim($post->title,'.') }}</h5>               
+
+                                    <div class="text-area"> 
+
+                                        <h5 class="card-title">{{ $post->title }}</h5>               
                                         <p class="card-text">
 
                                             {{-- 
@@ -30,15 +36,21 @@
                                             
                                             --}}
 
-                                            {{ Str::substr($post->content, 10, 300) }}...
+                                            {{ Str::substr($post->content, 0, 200) }}...
 
-                                            <a href="{{ route('admin.posts.show', ['post' => $post->id]) }}" class="card-link">Read more</a>
+                                            <span>Read more</span>
+
+                                            {{-- <a href="{{ route('admin.posts.show', ['post' => $post->id]) }}" class="card-link">Read more</a> --}}
                                         </p>
+
                                     </div>                             
                                 </div>
                             </div>
+
                         </a>
+
                     </div>
+
                 @endforeach
 
             </div>  

@@ -10974,6 +10974,10 @@ img {
   text-decoration: none;
 }
 
+.posts a .card {
+  margin-bottom: 30px;
+}
+
 .posts a .card-title {
   color: black;
 }
@@ -10982,12 +10986,13 @@ img {
   color: gray;
 }
 
-.posts a .card-link {
-  color: lightseagreen;
+.posts a .card-text span {
+  color: black;
 }
 
-.posts a .card-link:hover {
+.posts a .card-text span:hover {
   text-decoration: underline;
+  color: #339afb;
 }
 
 .posts .poster {

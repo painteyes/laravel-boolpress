@@ -3,16 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
 // ----------------------------
-
 use Illuminate\Support\Str;
-
 // ----------------------------
 
 class Post extends Model
 {
-    // States the name of table in the database
+    // States the table in the database
     protected $table = 'posts';
 
     // Allow mass assignment of table columns
@@ -20,20 +17,20 @@ class Post extends Model
         'title', 
         'content',
         'slug',
-        'category_id'
+        // 'category_id'
     ];
 
     // Generate a unique slug from a title
         // To use it, import the class and invoke the static method
     public static function getUniqueSlug($title) {        
         $slug = Str::slug($title);
-        $unchanged_slug = $slug;
+        $initial_slug = $slug;
         $post_found = Post::where('slug', '=', $slug)->first();        
-        $counter = 0;         
+        $counter = 1;         
         while($post_found) {
-            $counter++;
-            $slug = $unchanged_slug . '-' . $counter;
+            $slug = $initial_slug . '-' . $counter;
             $post_found = Post::where('slug', '=', $slug)->first();
+            $counter++;
         }
         return $slug;   
     }
@@ -43,3 +40,4 @@ class Post extends Model
         return $this->belongsTo('App\Category');
     }
 }
+ 

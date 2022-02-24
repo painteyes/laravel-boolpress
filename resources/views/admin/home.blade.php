@@ -2,14 +2,15 @@
 
 @section('content')
     <section>
-        <div class="container">
-            <h1>Welcome, {{$user->name}}</h1>
-
+        <div class="alert alert-success" role="alert">
+            <h3 class="alert-heading">Well done!</h3>
+            <p>You're logged into the admin area.</p>
+            <hr>
             @if ($user_info)
-                <p>Phone number: {{$user_info->phone}}</p>
-                <div>Address: {{$user_info->address}}</div>
+                <div class="mb-0">Name: {{$user->name}}</div>
+                <div class="mb-0">Phone number: {{$user_info->phone}}</div>
+                <div class="mb-0">Address: {{$user_info->address}}</div>
             @endif
-            
         </div>
     </section>
 @endsection

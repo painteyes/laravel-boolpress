@@ -1,14 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
 // ----------------------------
-
 use App\Post;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
-// ----------------------------
 
 class PostsTableSeeder extends Seeder
 {

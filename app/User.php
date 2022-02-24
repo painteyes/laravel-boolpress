@@ -37,9 +37,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // Identify the  one-to-one relationship with the secondary table
     public function userInfo() {
         return $this->hasOne('App\UserInfo');
     }
-
 
 }

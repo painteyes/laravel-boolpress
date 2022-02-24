@@ -4,15 +4,11 @@
     <section>
         <div class="card">        
             <div class="card-body">
-                <div>{{$post->slug}}</div>   
-
-               
-                    <div>Category: {{$post->category ? $post->category->name : 'undefined'}}</div> 
-                             
-                
                 <div class="">
-                    <img src="https://th.bing.com/th/id/R.f258539b928797dfe621298b92c7ceb2?rik=zl88qJzgJ6cpPQ&pid=ImgRaw&r=0" alt="">
-                </div>    
+                    <img src="https://i.pinimg.com/originals/26/22/cb/2622cbabed20dafc32063731178b934b.jpg" alt="">
+                </div>
+                <div class="mt-2">Slug: {{$post->slug}}</div>   
+                <div class="mt-2">Category: {{$post->category ? $post->category->name : 'undefined'}}</div> 
                 <h4 class="card-title mt-3">{{$post->title}}</h4>        
                 <p class="card-text mt-3 mb-4">{{ $post->content }}</p>
                 <div class="actions d-flex align-items-center justify-content-center">

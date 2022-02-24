@@ -17,11 +17,17 @@ class Post extends Model
         'title', 
         'content',
         'slug',
-        // 'category_id'
+        'category_id'
     ];
 
-    // Generate a unique slug from a title
-        // To use it, import the class and invoke the static method
+    public function category() {
+        return $this->belongsTo('App\Category','category_id', 'id');
+                            /** The second and third arguments aren't necessary 
+                                * because they're already compiled by Laravel */
+    }
+
+    /** Generate a unique slug from a title
+        * To use it, import the class and invoke the static method */
     public static function getUniqueSlug($title) {        
         $slug = Str::slug($title);
         $initial_slug = $slug;
@@ -33,11 +39,6 @@ class Post extends Model
             $counter++;
         }
         return $slug;   
-    }
-
-
-    public function category() {
-        return $this->belongsTo('App\Category');
-    }
+    }  
 }
  

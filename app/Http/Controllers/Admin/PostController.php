@@ -46,8 +46,9 @@ class PostController extends Controller
         $form_data = $request->all();      
         $new_post = new Post();
         $new_post->fill($form_data);
-        $new_post->slug = $this->getUniqueSlug($form_data['title']);
+        $new_post->slug = Post::getUniqueSlug($form_data['title']);
         $new_post->save();
+
         return redirect()->route('admin.posts.show', ['post' => $new_post->id ]);
     }
 
@@ -60,6 +61,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
+
         return view('admin.posts.show', compact('post'));
     }
 
@@ -73,6 +75,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $post = Post::findOrFail($id);
+
         return view('admin.posts.edit', compact('post', 'categories'));
     }
 
@@ -87,11 +90,14 @@ class PostController extends Controller
     {
         $form_data = $request->all();
         $request->validate($this->getValidationRules()); 
-        $post = Post::findOrFail($id);        
+        $post = Post::findOrFail($id);  
+
         if($form_data['title'] != $post->title) {
             $form_data['slug'] = $this->getUniqueSlug($form_data['title']);
         }
+        
         $post->update($form_data);
+
         return redirect()->route('admin.posts.show', ['post'=>$post->id]);
     }
 
@@ -105,6 +111,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->delete();
+
         return redirect()->route('admin.posts.index');
     }
 
@@ -112,7 +119,7 @@ class PostController extends Controller
         return [
             'title' => 'required|max:250',
             'content' => 'required|min:20|max:5000',
-            'category_id' => 'exist:categories,id|nullable'
+            'category_id' => 'exists:categories,id|nullable' /** Validate if the value exists in a column of a related table or is null */
         ];
     }
 }

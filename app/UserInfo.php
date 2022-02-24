@@ -10,7 +10,7 @@ class UserInfo extends Model
     protected $table = 'user_info';
 
     // Identify the one-to-one relationship with the primary table
-    public function user() {
-        return $this->belongsTo('app\User');
+    public function user() {                
+        return $this->belongsTo('app\User'); 
     }
 }

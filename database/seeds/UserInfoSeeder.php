@@ -16,13 +16,16 @@ class UserInfoSeeder extends Seeder
      * @return void
      */
     public function run(Faker $faker)
-    {
-        if (User::find(1)) {
-            $new_user_info = new UserInfo();
-            $new_user_info->phone = $faker->phoneNumber();
-            $new_user_info->address = $faker->streetAddress();
-            $new_user_info->user_id = 1;
-            $new_user_info->save();
+    {   
+        $users = User::all();
+        if ($users->isNotEmpty()) {
+            foreach ($users as $user) {
+                $new_user_info = new UserInfo();
+                $new_user_info->phone = $faker->phoneNumber();
+                $new_user_info->address = $faker->streetAddress();
+                $new_user_info->user_id = $user->id;
+                $new_user_info->save();
+            } 
         }     
     }
 }

@@ -1,11 +1,16 @@
 @extends('layouts.dashboard')
 
 @section('content')
+{{dd($post->category->id)}}
     <section>
         <div class="card">        
             <div class="card-body">
-                <div class="">
-                    <img src="https://i.pinimg.com/originals/26/22/cb/2622cbabed20dafc32063731178b934b.jpg" alt="">
+                <div class="cover">
+                    @foreach ($recipes as $recipe)
+                        @if ($recipe['title'] == $post->title)
+                            <img src="{{ $recipe['img'] }}" alt="">
+                        @endif
+                    @endforeach 
                 </div>
                 <div class="mt-2">Slug: {{$post->slug}}</div>   
                 <div class="mt-2">Category: {{$post->category ? $post->category->name : 'undefined'}}</div> 

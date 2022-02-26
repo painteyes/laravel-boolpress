@@ -15,7 +15,9 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['Starter', 'First courses', 'Main courses', 'Contours', 'Desserts'];
+        
+        $categories = config('categories');
+        
         foreach ($categories as $category) {
             $new_category = new Category();
             $new_category->name = $category;

@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+// --------------------------------
+use Illuminate\Support\Facades\DB;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,8 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(PostsTableSeeder::class);
         $this->call(UserInfoSeeder::class);
-        $this->call(CategoriesTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class); 
+
+        /** If you also want to seed the foreign key 
+         * you must first seed the categories 
+         * because it match the category id */
+        $this->call(PostsTableSeeder::class);
+
+        $this->call(TagsTableSeeder::class);
+        
     }
 }

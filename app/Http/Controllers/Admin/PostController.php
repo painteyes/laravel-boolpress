@@ -20,7 +20,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.posts.index', compact('posts'));
+        $recipes = config('recipes');
+
+        return view('admin.posts.index', compact('posts', 'recipes'));
     }
 
     /**
@@ -31,6 +33,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+        
         return view('admin.posts.create', compact('categories'));
     }
 
@@ -61,8 +64,9 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
+        $recipes = config('recipes');
 
-        return view('admin.posts.show', compact('post'));
+        return view('admin.posts.show', compact('post', 'recipes'));
     }
 
     /**

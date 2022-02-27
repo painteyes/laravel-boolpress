@@ -25,12 +25,18 @@ class PostsTableSeeder extends Seeder
             $new_post->content = $faker->paragraphs(3, true);
             $new_post->slug = Str::slug(Post::getUniqueSlug($new_post->title));
 
+            $new_post->save();
+
             /** FOREIGN KEY */
             /** It only works if a category table already exists 
              * because the foreign key must match a category id */
-            $new_post->category_id = Category::where('name', '=', $recipe['category'])->first()->id;
 
-            $new_post->save();
+            // if(Category::where('name', '=', $recipe['category']) {
+
+            //     $new_post->tags()->sync(Category::where('name', '=', $recipe['category'])->first()->id) ;
+
+            // }
+
         }        
     }
 }

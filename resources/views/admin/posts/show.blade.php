@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-{{dd($post->category->id)}}
     <section>
         <div class="card">        
             <div class="card-body">
@@ -14,6 +13,13 @@
                 </div>
                 <div class="mt-2">Slug: {{$post->slug}}</div>   
                 <div class="mt-2">Category: {{$post->category ? $post->category->name : 'undefined'}}</div> 
+                <div class="mt-2">Tags: 
+                    @forelse ($post->tags as $tag)
+                        {{$tag->name}}{{$loop->last ? '' : ', '}}
+                    @empty
+                        no tags
+                    @endforelse
+                </div> 
                 <h4 class="card-title mt-3">{{$post->title}}</h4>        
                 <p class="card-text mt-3 mb-4">{{ $post->content }}</p>
                 <div class="actions d-flex align-items-center justify-content-center">

@@ -11,7 +11,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="poster">
-                                        <img src="{{$recipes[$loop->index]['img']}}" alt="">
+                                        {{-- <img src="{{$recipes[$loop->index]['img']}}" alt=""> --}}
                                     </div>
                                     <div class="text-area"> 
                                         <h5 class="card-title">{{ $post->title }}</h5>               

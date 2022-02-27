@@ -11000,7 +11000,7 @@ img {
 }
 
 .posts .poster img {
-  max-height: 400px;
+  max-height: 300px;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;

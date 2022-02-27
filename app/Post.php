@@ -26,6 +26,10 @@ class Post extends Model
                                 * because they're already compiled by Laravel */
     }
 
+    public function tags() {
+        return $this->belongsToMany('App\Tag');
+    }
+
     /** Generate a unique slug from a title
         * To use it, import the class and invoke the static method */
     public static function getUniqueSlug($title) {        

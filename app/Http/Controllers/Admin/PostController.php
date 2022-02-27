@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Str;
 use App\Category;
+use App\Tag;
 
 
 class PostController extends Controller
@@ -33,8 +34,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tag::all();
         
-        return view('admin.posts.create', compact('categories'));
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -48,9 +50,17 @@ class PostController extends Controller
         $request->validate($this->getValidationRules());
         $form_data = $request->all();      
         $new_post = new Post();
-        $new_post->fill($form_data);
+        $new_post->fill($form_data); 
         $new_post->slug = Post::getUniqueSlug($form_data['title']);
         $new_post->save();
+
+        
+        // Save tags relations
+        if(array_key_exists('tags', $form_data)) { 
+    /** OR isset($form_data['tags']) */
+            $new_post->tags()->sync($form_data['tags']);
+        } 
+        
 
         return redirect()->route('admin.posts.show', ['post' => $new_post->id ]);
     }

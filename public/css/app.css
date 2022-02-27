@@ -10978,34 +10978,34 @@ img {
   margin-bottom: 30px;
 }
 
-.posts a .card-title {
-  color: black;
-}
-
-.posts a .card-text {
-  color: gray;
-}
-
-.posts a .card-text span {
-  color: black;
-}
-
-.posts a .card-text span:hover {
-  text-decoration: underline;
-  color: #339afb;
-}
-
-.posts .poster {
+.posts a .card .thumb {
   margin-bottom: 20px;
 }
 
-.posts .poster img {
+.posts a .card .thumb img {
   max-height: 300px;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+}
+
+.posts a .card .card-title {
+  color: black;
+}
+
+.posts a .card .card-text {
+  color: gray;
+}
+
+.posts a .card .card-text span {
+  color: black;
+}
+
+.posts a .card .card-text span:hover {
+  text-decoration: underline;
+  color: #339afb;
 }
 
 .cover img {

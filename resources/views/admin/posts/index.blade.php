@@ -1,25 +1,38 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <section class="posts">
-        <div class="container">
-            <h1>All posts</h1>  
+    <section>
+        <div class="posts">
+
+            <h1>All posts</h1> 
+
             <div class="row row-cols-2">
-                @foreach ($posts as $post)                 
+                @foreach ($posts as $post)
                     <div class="col">
-                        <a href ="{{ route('admin.posts.show', ['post' => $post->id])}}">
+
+                        {{-- Post --}}
+                        <a href ="{{route('admin.posts.show', ['post' => $post->id])}}">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="poster">
-                                        {{-- <img src="{{$recipes[$loop->index]['img']}}" alt=""> --}}
+
+                                    {{-- thumb --}}
+                                    <div class="thumb">
+                                        @foreach ($recipes as $recipe)
+                                            @if ($recipe['title'] == $post->title)
+                                                <img src="{{ $recipe['img'] }}" alt="">
+                                            @endif
+                                        @endforeach 
                                     </div>
+
+                                    {{-- preview text --}}
                                     <div class="text-area"> 
                                         <h5 class="card-title">{{ $post->title }}</h5>               
                                         <p class="card-text">
                                             {{ Str::substr($post->content, 0, 200) }}...
                                             <span>Read more</span>
                                         </p>
-                                    </div>                             
+                                    </div> 
+
                                 </div>
                             </div>
                         </a>
@@ -27,5 +40,9 @@
                 @endforeach
             </div>  
         </div>
-    </section> 
+
+        {{-- Indexes linked to pages --}}
+        {{$posts->links()}}
+
+    </section>     
 @endsection

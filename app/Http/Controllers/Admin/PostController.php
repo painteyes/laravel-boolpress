@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(10);
         $recipes = config('recipes');
 
         return view('admin.posts.index', compact('posts', 'recipes'));
@@ -54,13 +54,11 @@ class PostController extends Controller
         $new_post->slug = Post::getUniqueSlug($form_data['title']);
         $new_post->save();
 
-        
         // Save tags relations
-        if(array_key_exists('tags', $form_data)) { 
-    /** OR isset($form_data['tags']) */
+        if(array_key_exists('tags', $form_data)) /** or (isset($form_data['tags'])) */ 
+        {
             $new_post->tags()->sync($form_data['tags']);
         } 
-        
 
         return redirect()->route('admin.posts.show', ['post' => $new_post->id ]);
     }
@@ -87,10 +85,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::all();
         $post = Post::findOrFail($id);
+        $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -104,12 +103,21 @@ class PostController extends Controller
     {
         $form_data = $request->all();
         $request->validate($this->getValidationRules()); 
-        $post = Post::findOrFail($id);  
+        $post = Post::findOrFail($id);
 
+        // Generate the slug only if the title has changed
         if($form_data['title'] != $post->title) {
-            $form_data['slug'] = $this->getUniqueSlug($form_data['title']);
+            $form_data['slug'] = Post::getUniqueSlug($form_data['title']);
         }
-        
+
+        if(isset($form_data['tags'])) {
+            // add or edit tags
+            $post->tags()->sync($form_data['tags']); 
+        } else {
+            // removes all tags
+            $post->tags()->sync([]);
+        }
+               
         $post->update($form_data);
 
         return redirect()->route('admin.posts.show', ['post'=>$post->id]);
@@ -124,6 +132,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+        $post->tags()->sync([]);
         $post->delete();
 
         return redirect()->route('admin.posts.index');
@@ -133,7 +142,8 @@ class PostController extends Controller
         return [
             'title' => 'required|max:250',
             'content' => 'required|min:20|max:5000',
-            'category_id' => 'exists:categories,id|nullable' /** Validate if the value exists in a column of a related table or is null */
+            'category_id' => 'exists:categories,id|nullable', /** the value must be in a column of a related table or null */
+            'tags' => 'exists:tags,id'
         ];
     }
 }

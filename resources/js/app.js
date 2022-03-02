@@ -7,3 +7,13 @@
 require('./bootstrap');
 
 
+function showEditProfileForm() {
+	let completedInfo  = document.getElementById('completed-info');
+	completedInfo.classList.remove('show');
+	completedInfo.classList.add('hidden');
+
+    let form = document.getElementById('edit-profile-form');
+	form.classList.remove('hidden');
+	form.classList.add('show');
+}
+

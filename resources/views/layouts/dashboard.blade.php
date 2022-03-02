@@ -66,6 +66,7 @@
                                 </svg>
                                 Create post
                             </a>
+                            
                         </li>
                     </ul>
                 </div>

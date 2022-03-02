@@ -11017,3 +11017,19 @@ img {
      object-position: center;
 }
 
+#edit-profile-form.hidden {
+  display: none;
+}
+
+#edit-profile-form.show {
+  display: block;
+}
+
+#edit-profile-button.hidden {
+  display: none;
+}
+
+#edit-profile-button.show {
+  display: block;
+}
+

@@ -1,16 +1,21 @@
 <template>
 
-    <div class="container">
-        <h1>Hello World!</h1>
+    <div>
+        <PostsList/>
     </div>
     
 </template>
 
 
 <script>
+import PostsList from "../components/PostsList.vue";
 
-    export default ({
-        name:'App'
+
+    export default ({ 
+        name:'App',
+        components:  PostsList, 
+        
+        
     })
 
 </script>

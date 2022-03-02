@@ -37275,6 +37275,15 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+function showEditProfileForm() {
+  var completedInfo = document.getElementById('completed-info');
+  completedInfo.classList.remove('show');
+  completedInfo.classList.add('hidden');
+  var form = document.getElementById('edit-profile-form');
+  form.classList.remove('hidden');
+  form.classList.add('show');
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

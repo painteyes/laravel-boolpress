@@ -66,3 +66,24 @@ img{
     }
 }
 
+#edit-profile-form {
+    &.hidden {
+        display: none;
+    }
+    &.show{
+        display: block;
+    }
+}
+
+
+
+#edit-profile-button {
+    &.hidden {
+        display: none;
+    }
+    &.show{
+        display: block;
+    }
+}
+
+

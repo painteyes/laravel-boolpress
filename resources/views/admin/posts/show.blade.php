@@ -18,7 +18,9 @@
                 </div>
 
                 {{-- category  --}}
-                <div class="mt-2">Category: {{$post->category ? $post->category->name : 'undefined'}}</div> 
+                <div class="mt-2">
+                    Category: {{$post->category ? $post->category->name : 'undefined'}}
+                </div> 
 
                 {{-- tags --}}
                 <div class="mt-2">Tags: 

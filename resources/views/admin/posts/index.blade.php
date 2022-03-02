@@ -6,27 +6,17 @@
 
             <h1>All posts</h1> 
 
-            
-
-
             {{-- <div>Search by</div> --}}
 
             <h5>Search by</h5>
-                <ul>
-                    <li>
-                        <a class="" href="{{route('admin.categories')}}">
-                            Categories
-                        </a>
-                    </li>
-                </ul>
-                   
-            
+            <ul>
+                <li>
+                    <a class="" href="{{route('admin.categories')}}">
+                        Categories
+                    </a>
+                </li>
+            </ul>
                 
-                    
-                
-            
-            
-
             <div class="row row-cols-2">
                 @foreach ($posts as $post)
                     <div class="col">

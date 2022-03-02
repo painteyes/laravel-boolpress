@@ -19,6 +19,20 @@
 <script>
     export default {
         name: 'PostsList',
-
+        data: function() {
+            return {
+                posts: []
+            }
+        },
+        methods: {
+            getPosts: function() {
+                axios.get('/api/posts').then((response)=> {
+                    this.posts = response.data.result
+                });
+            }
+        }, 
+        created: function () {
+            this.getPosts();
+        }
     }
 </script>

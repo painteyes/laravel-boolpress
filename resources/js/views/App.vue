@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <PostsList/>
+        <PostsList />
     </div>
     
 </template>
@@ -13,9 +13,9 @@ import PostsList from "../components/PostsList.vue";
 
     export default ({ 
         name:'App',
-        components:  PostsList, 
-        
-        
+        components: {
+            PostsList, 
+        }
     })
 
 </script>

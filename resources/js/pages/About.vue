@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="container my-4">
-            <h1>Welcome in Boolpress!</h1>
+            <h1>About us</h1>
         </div>
     </section>
 </template>
@@ -9,7 +9,7 @@
 <script>
     
     export default ({ 
-        name:'Home',
+        name:'About',
     })
 
 </script>

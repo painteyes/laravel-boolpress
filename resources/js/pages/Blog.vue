@@ -1,15 +1,20 @@
 <template>
     <section>
         <div class="container my-4">
-            <h1>Blog</h1>
+            <PostsList/>
         </div>
     </section>
 </template>
 
 <script>
+
+    import PostsList from '../components/PostsList.vue'
     
     export default ({ 
         name:'Blog',
+        components: {
+            PostsList,
+        }
     })
 
 </script>

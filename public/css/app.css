@@ -11034,3 +11034,11 @@ img {
   display: block;
 }
 
+.page-not-found {
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+

@@ -2137,8 +2137,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/api/posts/' + this.$route.params.slug).then(function (response) {
-        _this.singlePost = response.data.result;
-        console.log(response.data);
+        if (response.data.success) {
+          _this.singlePost = response.data.result;
+        } else {
+          _this.$router.push({
+            name: 'page-not-found'
+          });
+        }
       });
     }
   },
@@ -2764,50 +2769,56 @@ var render = function () {
         "div",
         { staticClass: "row row-cols-3" },
         _vm._l(_vm.posts, function (post) {
-          return _c("div", { key: post.id, staticClass: "col mt-3" }, [
-            _c("a", { attrs: { href: "" } }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-body" }, [
-                  _vm._m(0, true),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text-area" }, [
-                    _c("h5", { staticClass: "card-title" }, [
-                      _vm._v(_vm._s(post.title)),
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-text" }, [
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(
-                            post.content.length > 250
-                              ? post.content.substr(0, 250) + "..."
-                              : post.content
-                          ) +
-                          "\n                                    "
-                      ),
-                      _c("span", [_vm._v("Read more")]),
+          return _c(
+            "div",
+            { key: post.id, staticClass: "col mt-3" },
+            [
+              _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: { name: "post-details", params: { slug: post.slug } },
+                  },
+                },
+                [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "thumb" }, [
+                        _c("img", { attrs: { src: "", alt: "" } }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "text-area" }, [
+                        _c("h5", { staticClass: "card-title" }, [
+                          _vm._v(_vm._s(post.title)),
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card-text" }, [
+                          _vm._v(
+                            "\n                                    " +
+                              _vm._s(
+                                post.content.length > 250
+                                  ? post.content.substr(0, 250) + "..."
+                                  : post.content
+                              ) +
+                              "\n                                    "
+                          ),
+                          _c("span", [_vm._v("Read more")]),
+                        ]),
+                      ]),
                     ]),
                   ]),
-                ]),
-              ]),
-            ]),
-          ])
+                ]
+              ),
+            ],
+            1
+          )
         }),
         0
       ),
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "thumb" }, [
-      _c("img", { attrs: { src: "", alt: "" } }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -2936,7 +2947,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "container my-4 page-not-found" }, [
         _c("h2", [_vm._v("Error 404")]),
         _vm._v(" "),
-        _c("h4", [_vm._v("Page not found!")]),
+        _c("h4", [_vm._v("Page not found !")]),
       ]),
     ])
   },

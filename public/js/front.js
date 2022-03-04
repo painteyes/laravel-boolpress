@@ -2125,6 +2125,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SinglePostDetails',
   data: function data() {
@@ -2976,6 +2982,26 @@ var render = function () {
   return _c("section", [
     _c("div", { staticClass: "container my-4" }, [
       _c("h1", [_vm._v(_vm._s(_vm.singlePost.title))]),
+      _vm._v(" "),
+      _vm.singlePost.category
+        ? _c("div", [
+            _vm._v(
+              "\n            Cateogry: " +
+                _vm._s(_vm.singlePost.category.name) +
+                "\n        "
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.singlePost.tags.length > 0
+        ? _c("div", [
+            _vm._v(
+              "\n            Tags: " +
+                _vm._s(_vm.singlePost.tags.name) +
+                "\n        "
+            ),
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("p", [_vm._v(_vm._s(_vm.singlePost.content))]),
     ]),

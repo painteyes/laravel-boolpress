@@ -5,7 +5,7 @@
             <div class="row row-cols-3">
                 <!-- Single post -->
                 <div v-for="post in posts" :key='post.id' class="col mt-3">
-                    <a href ="">
+                    <router-link :to="{name: 'post-details', params: {slug: post.slug}}">
                         <div class="card">
                             <div class="card-body">
                                 <!-- img -->
@@ -22,7 +22,7 @@
                                 </div> 
                             </div>
                         </div>
-                    </a>
+                    </router-link>  
                 </div>
             </div> 
         </div> 

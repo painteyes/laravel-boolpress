@@ -2,6 +2,12 @@
     <section>
         <div class="container my-4">
             <h1>{{singlePost.title}}</h1>
+            <div v-if='singlePost.category'>
+                Cateogry: {{singlePost.category.name}}
+            </div>
+            <div v-if='singlePost.tags.length > 0'>
+                Tags: {{singlePost.tags.name}}
+            </div>
             <p>{{singlePost.content}}</p>
         </div>
     </section>
@@ -19,8 +25,11 @@
         methods: {
             getPost() {
                 axios.get('/api/posts/' + this.$route.params.slug).then((response)=>{
-                   this.singlePost = response.data.result 
-                   console.log(response.data )               
+                    if (response.data.success) {
+                        this.singlePost = response.data.result        
+                    } else {
+                        this.$router.push({name: 'page-not-found'})
+                    }
                 })
             }
         },

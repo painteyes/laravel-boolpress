@@ -10,8 +10,9 @@
                             <div class="card-body">
                                 <!-- img -->
                                 <div class="thumb">
-                                    <img src="" alt="">
-                                </div>
+                                    <img v-if="post.cover" :src="post.cover" :alt="post.title">
+                                    <img v-else src="https://shenandoahcountyva.us/bos/wp-content/uploads/sites/4/2018/01/picture-not-available-clipart-12.jpg" alt="">
+                                </div> 
                                 <!-- text content preview-->
                                 <div class="text-area"> 
                                     <h5 class="card-title">{{post.title}}</h5>               

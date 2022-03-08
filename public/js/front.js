@@ -1986,6 +1986,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostsList',
   data: function data() {
@@ -2116,6 +2117,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2790,7 +2796,16 @@ var render = function () {
                   _c("div", { staticClass: "card" }, [
                     _c("div", { staticClass: "card-body" }, [
                       _c("div", { staticClass: "thumb" }, [
-                        _c("img", { attrs: { src: "", alt: "" } }),
+                        post.cover
+                          ? _c("img", {
+                              attrs: { src: post.cover, alt: post.title },
+                            })
+                          : _c("img", {
+                              attrs: {
+                                src: "https://shenandoahcountyva.us/bos/wp-content/uploads/sites/4/2018/01/picture-not-available-clipart-12.jpg",
+                                alt: "",
+                              },
+                            }),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "text-area" }, [
@@ -2981,6 +2996,17 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("section", [
     _c("div", { staticClass: "container my-4" }, [
+      _vm.singlePost.cover
+        ? _c("div", { staticClass: "post-cover" }, [
+            _c("img", {
+              attrs: {
+                src: _vm.singlePost.cover,
+                alt: _vm.singlePost.cover.title,
+              },
+            }),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("h1", [_vm._v(_vm._s(_vm.singlePost.title))]),
       _vm._v(" "),
       _vm.singlePost.category

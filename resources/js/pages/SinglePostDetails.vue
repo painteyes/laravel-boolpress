@@ -1,6 +1,11 @@
 <template>
     <section>
         <div class="container my-4">
+
+            <div v-if="singlePost.cover" class="post-cover"> 
+                <img :src="singlePost.cover" :alt="singlePost.cover.title">
+            </div>   
+            
             <h1>{{singlePost.title}}</h1>
             <div v-if='singlePost.category'>
                 Cateogry: {{singlePost.category.name}}

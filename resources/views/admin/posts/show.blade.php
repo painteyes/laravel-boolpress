@@ -10,7 +10,7 @@
 
                 {{-- cover image --}}
                 @if ($post->cover)
-                    <div class="cover"> 
+                    <div class="post-cover"> 
                         <img src="{{asset('storage/' . $post->cover)}}" alt="{{$post->title}}">
                     </div>   
                 @endif                  

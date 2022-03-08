@@ -18,7 +18,7 @@
             @endif
                 
             {{-- Pre-filled form to edit --}}
-            <form action="{{route('admin.posts.update', ['post' => $post->id])}}" method="post">
+            <form action="{{route('admin.posts.update', ['post' => $post->id])}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT') 
 
@@ -91,6 +91,27 @@
                         value=""
                     >{{old('content', $post->content)}}</textarea>
                 </div>
+
+                {{-- image --}}
+                <div class="form-group cover">
+                    <label 
+                        for="cover">Upload image
+                    </label>
+                    <input 
+                        type="file" 
+                        class="form-control-file" 
+                        id="cover" 
+                        name="cover" 
+                        value="{{-- the value is ignored for security reasons --}}"  
+                    > 
+                </div>
+
+                {{-- current image preview --}}
+                @if ($post->cover)
+                    <div class="current-cover-preview">
+                        <img src="{{asset('storage/' . $post->cover)}}" alt='{{$post->title}}'>
+                    </div>
+                @endif
 
                 {{-- Submit --}}
                 <button type="submit" class="btn btn-success">Save changes</button>

@@ -95,4 +95,17 @@ img{
     flex-direction: column;
 }
 
+.current-cover-preview {
+    img {
+        width: 100px;
+        margin-bottom: 50px ;
+    }
+}
+
+.post-cover{
+    img{
+        max-width: 700px;
+    }
+}
+
 

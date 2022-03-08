@@ -127,6 +127,17 @@ class PostController extends Controller
             // removes all tags
             $post->tags()->sync([]);
         }
+
+        if(isset($form_data['cover'])) {
+            // remove current file
+            if ($post->cover) {
+                Storage::delete($post->cover);
+            }
+            // upload new file
+            $img_path = Storage::put('uploads', $form_data['cover']);
+            // Save the path to the file in the cover column of the post
+            $form_data['cover'] = $img_path;
+        }
                
         $post->update($form_data);
 
@@ -143,6 +154,9 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->tags()->sync([]);
+        if($post->cover) {
+            Storage::delete($post->cover);
+        }
         $post->delete();
 
         return redirect()->route('admin.posts.index');

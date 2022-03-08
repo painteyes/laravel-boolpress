@@ -95,10 +95,10 @@
                     <input 
                         type="file" 
                         class="form-control-file" 
-                        id="cover" name="cover" 
+                        id="cover" 
+                        name="cover" 
                     > 
                 </div>
-
 
                 {{-- Submit --}}
                 <button type="submit" class="btn btn-success">Create</button>

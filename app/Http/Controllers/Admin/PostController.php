@@ -153,7 +153,8 @@ class PostController extends Controller
             'title' => 'required|max:250',
             'content' => 'required|min:20|max:5000',
             'category_id' => 'exists:categories,id|nullable', /** the value must be in a column of a related table or null */
-            'tags' => 'exists:tags,id'
+            'tags' => 'exists:tags,id',
+            'cover' => 'image|max:5000'
         ];
     }
 }

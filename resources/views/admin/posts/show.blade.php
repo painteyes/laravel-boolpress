@@ -9,14 +9,12 @@
                 <div class="mb-2">Slug: {{$post->slug}}</div> 
 
                 {{-- cover image --}}
-                <div class="cover"> 
-                    @foreach ($recipes as $recipe)
-                        @if ($recipe['title'] == $post->title)
-                            <img src="{{ $recipe['img'] }}" alt="">
-                        @endif
-                    @endforeach 
-                </div>
-
+                @if ($post->cover)
+                    <div class="cover"> 
+                        <img src="{{asset('storage/' . $post->cover)}}" alt="{{$post->title}}">
+                    </div>   
+                @endif                  
+                
                 {{-- category  --}}
                 <div class="mt-2">
                     Category: {{$post->category ? $post->category->name : 'undefined'}}

@@ -27,13 +27,11 @@
                                 <div class="card-body">
 
                                     {{-- thumb --}}
-                                    <div class="thumb">
-                                        @foreach ($recipes as $recipe)
-                                            @if ($recipe['title'] == $post->title)
-                                                <img src="{{ $recipe['img'] }}" alt="">
-                                            @endif
-                                        @endforeach 
-                                    </div>
+                                    @if ($post->cover)
+                                        <div class="thumb">     
+                                            <img src="{{asset('storage/' . $post->cover)}}" alt="{{$post->title}}">
+                                        </div>
+                                    @endif
 
                                     {{-- preview text --}}
                                     <div class="text-area"> 

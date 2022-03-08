@@ -18,7 +18,7 @@
             @endif 
 
             {{-- Blank form for create --}}
-            <form action="{{route('admin.posts.store')}}" method="post">
+            <form action="{{route('admin.posts.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
 
@@ -86,6 +86,19 @@
                         value=""
                     >{{old('content')}}</textarea>
                 </div>
+
+                {{-- image --}}
+                <div class="form-group">
+                    <label 
+                        for="cover">Upload image
+                    </label>
+                    <input 
+                        type="file" 
+                        class="form-control-file" 
+                        id="cover" name="cover" 
+                    > 
+                </div>
+
 
                 {{-- Submit --}}
                 <button type="submit" class="btn btn-success">Create</button>

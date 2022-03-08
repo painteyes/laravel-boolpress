@@ -9,6 +9,7 @@ use App\Post;
 use Illuminate\Support\Str;
 use App\Category;
 use App\Tag;
+use Illuminate\Support\Facades\Storage;
 
 
 class PostController extends Controller
@@ -17,7 +18,7 @@ class PostController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+    */
     public function index()
     {
         $posts = Post::paginate(10);
@@ -30,7 +31,7 @@ class PostController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */
+    */
     public function create()
     {
         $categories = Category::all();
@@ -44,7 +45,7 @@ class PostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
+    */
     public function store(Request $request)
     {
         $request->validate($this->getValidationRules());
@@ -52,10 +53,19 @@ class PostController extends Controller
         $new_post = new Post();
         $new_post->fill($form_data); 
         $new_post->slug = Post::getUniqueSlug($form_data['title']);
+
+        // Save image
+        if(isset($form_data['cover'])) {
+            // Put the image in the storage folder
+            $img_path = Storage::put('uploads', $form_data['cover']);
+            // Save the path to the file in the cover column of the post
+            $new_post->cover = $img_path;
+        }
+        
         $new_post->save();
 
         // Save tags relations
-        if(array_key_exists('tags', $form_data)) /** or (isset($form_data['tags'])) */ 
+        if(array_key_exists('tags', $form_data)) /** or isset($form_data['tags']) */ 
         {
             $new_post->tags()->sync($form_data['tags']);
         } 
@@ -68,7 +78,7 @@ class PostController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+    */
     public function show($id)
     {
         $post = Post::findOrFail($id);
@@ -82,7 +92,7 @@ class PostController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+    */
     public function edit($id)
     {
         $post = Post::findOrFail($id);
@@ -98,7 +108,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+    */
     public function update(Request $request, $id)
     {
         $form_data = $request->all();
@@ -128,7 +138,7 @@ class PostController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+    */
     public function destroy($id)
     {
         $post = Post::findOrFail($id);

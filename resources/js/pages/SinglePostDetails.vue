@@ -7,12 +7,15 @@
             </div>   
             
             <h1>{{singlePost.title}}</h1>
+
             <div v-if='singlePost.category'>
                 Cateogry: {{singlePost.category.name}}
             </div>
+
             <div v-if='singlePost.tags.length > 0'>
                 Tags: {{singlePost.tags.name}}
             </div>
+            
             <p>{{singlePost.content}}</p>
         </div>
     </section>

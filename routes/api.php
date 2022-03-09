@@ -21,4 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/posts', 'Api\PostController@index');
 Route::get('/posts/{slug}', 'Api\PostController@show');
 
+// Lead Api endpoint
+Route::post('/leads/store', 'Api\LeadController@store');
+
 

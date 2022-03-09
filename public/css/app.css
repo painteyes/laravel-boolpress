@@ -11050,3 +11050,7 @@ img {
   max-width: 700px;
 }
 
+.error {
+  color: red;
+}
+
